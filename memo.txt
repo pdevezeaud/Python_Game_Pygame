@@ -1,0 +1,7 @@
+echo "# Python_Game_Pygame" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/pdevezeaud/Python_Game_Pygame.git
+git push -u origin main
