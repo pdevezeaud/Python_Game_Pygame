@@ -32,12 +32,12 @@ while running:
         y_background = 0
         screen.blit(background,(-109,y_background))
         
-    screen.blit(player.image,player.rect)
+    screen.blit(game.player.image,game.player.rect)
     #print(player.rect)
 
     #information sur le framerate
     clock.tick(60)
-    print(f"{clock.get_fps()} FPS")
+    #print(f"{clock.get_fps()} FPS")
 
 
 
@@ -47,3 +47,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
+        # sinon si une autre toche est présse je la stocke
+        elif event.type == pygame.KEYDOWN:
+            game.pressed[event.key] = True
+        elif event.type == pygame.KEYUP:
+            game.pressed[event.key] = False
+    
+    print(game.pressed)
