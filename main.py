@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+from game import Game
 pygame.init()
 
 #Gestion du Frame/image
@@ -11,8 +12,8 @@ screen = pygame.display.set_mode((400,600))
 #CHARGEMENT IMAGE DE FOND
 background = pygame.image.load('ressource/ressource/fond.jpg').convert()
 
-#creation instance de player
-player = Player()
+#creation instance de game (qui lance player)
+game = Game()
 
 #initialisation du background et de son positionnement en y
 y_background = 0
