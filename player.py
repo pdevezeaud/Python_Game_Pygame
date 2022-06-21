@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = 520
         self.velocity = 5
 
-    
+    #deplacement
     def move_right(self):
         self.rect.x += self.velocity
     
