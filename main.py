@@ -10,7 +10,7 @@ pygame.display.set_caption("Arcane Game")
 screen = pygame.display.set_mode((400,600))
 
 #CHARGEMENT IMAGE DE FOND
-background = pygame.image.load('ressource/ressource/fond.jpg').convert()
+background = pygame.image.load('ressource/ressource/fond.jpg')
 
 #creation instance de game (qui lance player)
 game = Game()
@@ -22,15 +22,20 @@ y_background = 0
 #boucle d'animation
 running = True
 while running:
-    #Defilement fond ecran
 
-    y_background += 1
+
+    #Defilement fond ecran en y
+    y_background += 0.5
+
+    #Defilement fond ecran en x
+    x_background = int(-0.66 * game.player.rect.x)
+
     if y_background < 619:
-        screen.blit(background,(-109,y_background))
-        screen.blit(background,(-109,y_background - 619))
+        screen.blit(background,(x_background,int(y_background)))
+        screen.blit(background,(x_background,int(y_background - 619)))
     else:
         y_background = 0
-        screen.blit(background,(-109,y_background))
+        screen.blit(background,int(x_background,int(y_background)))
         
     screen.blit(game.player.image,game.player.rect)
     #print(player.rect)
@@ -54,6 +59,10 @@ while running:
             game.pressed[event.key] = False
     
     #print(game.pressed)
+    # si la touche droit est pressé et que le player + ajout de la taille player est plus petit que la taille ecran alors à droite
 
-    if game.pressed.get(pygame.K_RIGHT):
+    if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x + game.player.rect.width < screen.get_width():
         game.player.move_right()
+    
+    if game.pressed.get(pygame.K_LEFT) and game.player.rect.x > 0:
+        game.player.move_left()
